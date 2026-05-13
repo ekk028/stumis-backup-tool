@@ -1,53 +1,54 @@
-# STU-MIS Backup Tool — Handoff Package
+# STU-MIS Backup Tool
 
-This folder is ready to hand off to **Claude Code** to build a Windows desktop tool that backs up data from the STU-MIS school management platform.
+โปรแกรมสำรองข้อมูลนักเรียนจากระบบ STU-MIS สำหรับโรงเรียนที่ใช้งาน stumis06.com
 
-## How to use this with Claude Code
+---
 
-### Step 1 — Install Claude Code
-- Windows: see `https://docs.claude.com/claude-code` for the latest install command
-- Sign in with your Anthropic / Claude account
+## ดาวน์โหลด
 
-### Step 2 — Open this folder in Claude Code
-```bash
-cd "D:\Downloads\stumis-backup-tool-project"
-claude
-```
+ดาวน์โหลดไฟล์ `.exe` ได้จากหน้า [Releases](https://github.com/ekk028/stumis-backup-tool/releases)
+ไม่ต้องติดตั้ง Python หรือโปรแกรมใดเพิ่มเติม — ดับเบิลคลิกใช้งานได้เลย
 
-### Step 3 — Give Claude Code this prompt to start
+---
 
-```
-Read CLAUDE.md, ENDPOINTS.md, and SPEC.md first.
+## วิธีใช้งาน
 
-Then build the STU-MIS Backup Tool as described. Start with the MVP
-(Cat 2/3/5/6 — bulk Excel endpoints) and a minimal customtkinter UI.
-Test it works against https://wangluangpitt.stumis06.com/ then add
-the remaining categories one at a time.
+1. เปิดไฟล์ `STU-MIS Backup Tool.exe`
+2. กรอก URL ของโรงเรียน เช่น `https://wangluangpitt.stumis06.com/`
+3. กรอก Username และ Password (บัญชีผู้ดูแลระบบ)
+4. เลือกโฟลเดอร์ที่ต้องการบันทึกข้อมูล
+5. เลือกหมวดข้อมูลที่ต้องการสำรอง
+6. กด **ดาวน์โหลด**
 
-The starter_code/ folder has my JSON→Excel converters from manually
-backing up one school. Use them as reference for the output format.
-sample_data/ has small JSON samples — you can dev-test conversion
-without needing to hit the real server every time.
+---
 
-After MVP works, build the .exe with PyInstaller and confirm it runs
-on Windows.
-```
+## ข้อมูลที่รองรับ
 
-### Step 4 — Iterate
-Claude Code will work in stages. Each session may take 2-4 hours of active work. Expect 3-5 sessions total to ship a polished v1.
+| หมวด | ชื่อ | หมายเหตุ |
+|------|------|----------|
+| 0 | สรุปคะแนนพฤติกรรม | โหลดได้เฉพาะ 18:00–06:00 น. |
+| 1 | เช็กชื่อเช้า (หน้าเสาธง) | |
+| 2 | พฤติกรรมลบ | |
+| 3 | ความดี | |
+| 4 | เยี่ยมบ้าน | |
+| 5 | EQ | |
+| 6 | SDQ | |
+| 7 | เช็กชื่อรายคาบ | ใช้เวลานาน ~5,000 คาบ |
+| 8 | ข้อมูลครูและบุคลากร | |
 
-## What's in this folder
+---
 
-| File | Purpose |
-|---|---|
-| `CLAUDE.md` | Operating manual for Claude Code — read first |
-| `SPEC.md` | Detailed requirements & user stories |
-| `ENDPOINTS.md` | All STU-MIS HTTP endpoints + request formats |
-| `starter_code/` | Working Python converters from Cowork session |
-| `sample_data/` | Real JSON dumps from one school (truncated) |
+## ความต้องการของระบบ
 
-## Real-world test credentials
-You'll need a real school's login to test. The team that built this used `wangluangpitt.stumis06.com` with admin credentials. Use your own school's URL and admin login for testing.
+- Windows 10 / 11
+- เชื่อมต่ออินเทอร์เน็ต
+- บัญชีผู้ดูแลระบบของโรงเรียนบน STU-MIS
 
-## Authoring notes
-The handoff package was prepared by Claude (in Cowork mode) after completing one school's full backup manually — that's where the endpoint knowledge came from. The Excel converter logic is already correct; the hard work is wrapping it in a clean UI and login flow.
+---
+
+## หมายเหตุ
+
+- โปรแกรมนี้รองรับทุกโรงเรียนที่ใช้ระบบ stumis06.com
+- ข้อมูลถูกบันทึกเป็นไฟล์ Excel (.xlsx) แยกตามหมวด
+- หมวด 7 (เช็กชื่อรายคาบ) ใช้เวลาโหลดนานเนื่องจากมีข้อมูลจำนวนมาก
+- แนะนำให้สำรองข้อมูลก่อนเปลี่ยนปีการศึกษา
